@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ninjago</title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <h1 class="title">Learning to code with Net Ninja tutorials</h1>
+        <div id="homepage">
+            <h1>Learning to code! Loosely based on Net Ninjs tutorials</h1>
+            <div id="ninjas"></div>
+        </div>
+
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script src="https://unpkg.com/react@15/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+        <script type="text/babel" src="talker.js"></script>
+        <script type="text/babel" src="questions.js"></script>
+        <script type="text/babel" src="child00.js"></script>
+
+        <!-- Create React Component -->
+        <script type="text/babel">
+         
+         var Application = React.createClass({
+            getInitialState: function(){
+                return({
+                    instructions: ['Constantly', 'be learning', 'new things.' ],
+                    counter: 5
+                });
+            },
+
+   
+        componentWillMount : function(){
+
+            this.changeCounter();
+
+              window.setInterval(
+                  this.changeCounter
+                ,3000);
+            },
+
+
+        changeCounter: function(){
+            console.log('Yep, that is another 3 seconds...');
+            if(this.state.counter === 0){
+                    this.setState({
+                        counter: 1
+                    });
+                }
+                else if(this.state.counter === 1){
+                    this.setState({
+                        counter: 2
+                    });
+                }
+                else {
+                    this.setState({
+                        counter: 0
+                    });
+                }
+        },
+            render: function(){
+            return(
+                <div>
+                <Talker displayme = {this.state.instructions[this.state.counter]} />
+                <Questions />
+                </div>
+            )
+        }
+        });  // end of Application.
+
+
+        
+        
+        ReactDOM.render(<Application />, document.getElementById('ninjas'));
+        </script>
+
+
+    </body>
+</html>

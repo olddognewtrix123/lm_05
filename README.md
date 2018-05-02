@@ -7,6 +7,13 @@
     ----------------------------------------------------------------- 
 
 
+"
+git commit -m "first commit"
+git remote add origin1 https://github.com/olddognewtrix123/lm_05.git
+git push -u origin1 master
+"
+
+
 This is a step by step for setting up a sinple nodejs express app.
 Everything was done in clout 9 io
 The database was set up in the c9 environment

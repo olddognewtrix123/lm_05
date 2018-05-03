@@ -26,18 +26,25 @@ var Child00 = React.createClass({
             
             //Custom functions
                     handleSubmit: function(e){
+                        
                         e.preventDefault();
                         var newquestion = this.refs.newquestion.value;
-        console.log("The new question is " + newquestion);
-                        fetch('/api/ninjas?name=' + newquestion ).then(function(data){
-                            return data.json();
-                       }).then( json => {
-                           this.setState({
-                                ninjas: json
-                           });
-                           console.log(json);
-                        });
+                        
+                       fetch('/api/ninjas', {
+                          method: 'POST',
+                          body: JSON.stringify({"name":newquestion}),
+                              headers: {"Content-Type": "application/json"}
+                        })
+                        .then((response) => {
+                          if (response.ok) {
+                            console.log('(◕◡◕✿)');
+                          }
+                          else {
+                            console.log('(╯◕︿◕)╯︵ ┻━┻ ');
+                          }
+                        })
                     },
+                    
                     
                     toggleCheckboxChange: function() {
                         this.setState(({ isChecked }) => (

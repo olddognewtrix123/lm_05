@@ -13,9 +13,9 @@ var Child00 = React.createClass({
                 
                 return (
                     <div id="pookie00" >
-                       <form id="addQandA" onSubmit={this.handleSubmit}>
+                       <form id="addQandA" onSubmit={this.sendData}>
                             <input type = "text" required ref="newquestion" name="newquestion" placeholder='Enter your question' onChange={this.onFormChange} />
-                            <input type = "submit" value={this.state.labelclick}  />
+                            <input type = "submit" value={this.state.labelclick}/>
                            </form>
                        <button onClick={this.props.onClick} style={{color: 'red'}}>
                       Cancel and Close
@@ -25,27 +25,13 @@ var Child00 = React.createClass({
             },
             
             //Custom functions
-                    handleSubmit: function(e){
-                        
-                        e.preventDefault();
-                        var newquestion = this.refs.newquestion.value;
-                        
-                       fetch('/api/ninjas', {
-                          method: 'POST',
-                          body: JSON.stringify({"name":newquestion}),
-                              headers: {"Content-Type": "application/json"}
-                        })
-                        .then((response) => {
-                          if (response.ok) {
-                            console.log('(◕◡◕✿)');
-                          }
-                          else {
-                            console.log('(╯◕︿◕)╯︵ ┻━┻ ');
-                          }
-                        })
-                    },
-                    
-                    
+            
+            sendData: function(){
+
+                var newquestion = this.refs.newquestion.value;
+                this.props.onSubmit(newquestion);
+            },
+
                     toggleCheckboxChange: function() {
                         this.setState(({ isChecked }) => (
                           {

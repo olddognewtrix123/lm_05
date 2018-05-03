@@ -35,6 +35,25 @@
                         console.log(test2[0].name);
                      });
                  },
+                 
+        handleSubmit(newquestion){
+                        
+                   //     var newquestion = this.refs.newquestion.value;
+                        
+                       fetch('/api/ninjas', {
+                          method: 'POST',
+                          body: JSON.stringify({"name":newquestion}),
+                              headers: {"Content-Type": "application/json"}
+                        })
+                        .then((response) => {
+                          if (response.ok) {
+                            console.log('(◕◡◕✿)');
+                          }
+                          else {
+                            console.log('(╯◕︿◕)╯︵ ┻━┻ ');
+                          }
+                        })
+                    },
             
         render: function(){
             
@@ -55,7 +74,7 @@
                      Ask your question.
                 </button>
                 <p>Hello I am a questions container</p>
-                {!this.state.isHidden && <Child00 onClick={this.toggleHidden}/>}
+                {!this.state.isHidden && <Child00 onClick={this.toggleHidden} onSubmit={this.handleSubmit}/>}
                  <ul>{ninjas}</ul>
                 </div>
                 );
